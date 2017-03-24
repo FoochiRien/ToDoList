@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivityFirstScreen extends AppCompatActivity {
 
@@ -49,8 +50,6 @@ public class MainActivityFirstScreen extends AppCompatActivity {
 //        } else {
 //            mNolist.setVisibility(View.GONE); //if items in list display list
 //        }
-
-        //TODO create Adapter
 
         mBaseAdapter = new BaseAdapter() {
             @Override
@@ -90,6 +89,18 @@ public class MainActivityFirstScreen extends AppCompatActivity {
                 intent.putExtra("ID", position); //telling the intent to
                 startActivity(intent);
             }
+        });
+        Intent intent = getIntent();
+        final int index = intent.getIntExtra("ID", 0);
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){ //to remove items from list
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ListHolder.getsInstance().getmListEvent().remove(index);
+                mBaseAdapter.notifyDataSetChanged();
+                Toast.makeText(MainActivityFirstScreen.this, "Item deleted", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
         });
     }
 

@@ -83,9 +83,9 @@ public class RevisionListActivity extends AppCompatActivity {
                 Listlist2 itemsList = ListHolder.getsInstance().getmListEvent().get(index).getListlist2().get(position);
                 mRevisionItem.setText(itemsList.getItemTitle());
                 mRevisionDescrip.setText(itemsList.getItemDescrip());
-                mArrayAdapter2.notifyDataSetChanged();
-                mRevisionItem.getText().clear();
-                mRevisionDescrip.getText().clear();
+//                mArrayAdapter2.notifyDataSetChanged();
+//                mRevisionItem.getText().clear();
+//                mRevisionDescrip.getText().clear();
             }
         });
 
