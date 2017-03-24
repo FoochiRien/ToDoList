@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="lyadrienne.generalassemb.git.myapplication.NewListActivity">
+
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/toolbar"
+        />
+
+    <TextView
+        android:id="@+id/entertitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolBar"
+        android:textSize="25dp"
+        android:layout_marginTop="150dp"
+        android:textAlignment="center"
+        android:text="Enter title for To Do List:"/>
+
+    <EditText
+        android:id="@+id/listtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/entertitle"
+        android:padding="25dp"
+        android:hint="ex..Groceries" />
+
+    <Button
+        android:id="@+id/submitnewlist"
+        android:layout_width="65dp"
+        android:layout_height="55dp"
+        android:text="Submit"
+        android:background="#D1C4E9"
+        android:layout_below="@+id/listtitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+       />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"/>
+
+
+</RelativeLayout>
