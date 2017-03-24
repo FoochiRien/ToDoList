@@ -61,15 +61,16 @@ public class RevisionListActivity extends AppCompatActivity {
             }
 
         });
-//        mItemView.setOnItemClickListener(new AdapterView.OnLongClickListener(){
-//            @Override
-//            public boolean onLongClick(View v) {
-//                ListHolder.getsInstance().getmListEvent().remove(Listlist,); //TODO remove
-//                mArrayAdapter2.notifyDataSetChanged();
-//                return false;
-//            } // to remove items
 
-//        });
+        mItemView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){ //to remove items from list
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ListHolder.getsInstance().getmListEvent().get(index).getListlist2().remove(position);
+                mArrayAdapter2.notifyDataSetChanged();
+                return false;
+            }
+
+        });
         mItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -106,7 +107,7 @@ public class RevisionListActivity extends AppCompatActivity {
                 TextView textView = (TextView) v.findViewById(android.R.id.text1);
                 textView.setText(currentitem.getItemTitle()); //setting text using the variable
                 TextView textView1 = (TextView) v.findViewById(android.R.id.text2);
-                textView1.setText(currentitem.getItemDescrip()); 
+                textView1.setText(currentitem.getItemDescrip());
                 return v;
             }
 

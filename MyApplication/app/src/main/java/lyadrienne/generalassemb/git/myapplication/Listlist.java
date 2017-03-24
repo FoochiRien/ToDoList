@@ -19,6 +19,13 @@ public class Listlist {
         listlist2 = new ArrayList<>();
     }
 
+    public void removeTotalItem(int position){
+        listlist2.remove(position);
+
+    }
+
+    public String getListTitle() {return mListTitle; }
+
     public List<Listlist2> getListlist2() {
         return listlist2;
     }

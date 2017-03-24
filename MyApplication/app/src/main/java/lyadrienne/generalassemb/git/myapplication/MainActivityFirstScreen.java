@@ -43,7 +43,6 @@ public class MainActivityFirstScreen extends AppCompatActivity {
 
         final ListView listView = (ListView) findViewById(R.id.itemsinlist);
 
-
 //        final ListHolder listHolder = ListHolder.getsInstance(); //instance of singleton
 //        if (listHolder.getmListEvent().size() == 0){
 //            mNolist.setVisibility(View.VISIBLE); //if there is not items in the list display message

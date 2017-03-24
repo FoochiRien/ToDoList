@@ -11,6 +11,7 @@ public class ListHolder {
 
     private static  ListHolder sInstance;
 
+
     private List<Listlist> mListEvent;
 
     private ListHolder() {
@@ -22,6 +23,7 @@ public class ListHolder {
             sInstance = new ListHolder();
         } return sInstance;
     }
+
     public void addListHolder(Listlist listList){
         mListEvent.add(listList);
     }
