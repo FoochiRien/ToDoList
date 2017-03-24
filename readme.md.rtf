@@ -1,5 +1,32 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf130
-{\fonttbl}
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
 {\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\margl1440\margr1440\vieww20680\viewh12720\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 To Do List app by Adrienne McCloud\
+\
+About:\
+This app will allow the user to create a to list which includes and title for the list, items for the list, and descriptions for the items in the list. \
+\
+\
+Screen One(MainActivityScreenOne):\
+From this screen the user will see the titles of their lists and be able to create a new list. The user clicks on the \'93+Add\'94 in the top right corner. \
+\
+Once the user has a list(s), they can delete the items from this screen with a long hold on the item. To edit the list the user applies a short click which takes them to screen three the RevisionListActivity. \
+\
+Screen Two (NewListActivity): \
+From this screen the user will be able to create the list title. For example, if you want to make a grocery list. The user would enter \'93Groceries\'94. On submit the user is taken to the RevisionListActivity. If the user does not enter information, upon clicking on submit they will be taken back to the main screen. Any text is permitted as the title of a list. \
+\
+Screen Three(RevisionListActivity):\
+From this screen the user is able to add items and descriptions to the list. The title of the list is displayed in the toolbar at the top. The user can enter either the item and/or the description. When they submit, the information is displayed on the bottom which is the list view. The user must enter data into the item field. To delete an item from the list view click and hold down. To edit an item, apply a short click. To see the complete list, use the phones back button.  \
+\
+Possible bugs:\
+On the RevisionListActivity - The edit function doesn\'92t complete, when the user changes or adds information to the item it creates a new item instead of updating the original item. \
+From the NewListActivity - If the phone is in landscape the submit button is very small at the bottom of the screen. \
+A clunky issue - the keyboard has be to collapsed from the users phone it is not hardcoded in to the app. \
+On MainActivityScreenOne - I tried to do a textview to show when there are no lists, that would prompt the user to create a list. However because the the instance requires a null value the invisibility crashes on launch. \
+\
+ \
+\
 }
