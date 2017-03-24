@@ -15,8 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
 public class RevisionListActivity extends AppCompatActivity {
 
     EditText mRevisionItem, mRevisionDescrip; //item and description entered by user on the revision list activity page.
@@ -57,23 +55,22 @@ public class RevisionListActivity extends AppCompatActivity {
                 } else {
                     Listlist2 listlist2 = new Listlist2(mRevisionItem.getText().toString(), mRevisionDescrip.getText().toString()); //sends information to the singleton.
                     ListHolder.getsInstance().getmListEvent().get(index).addmListlist2(listlist2); //singleton instance of add to list go to this index add to listlist
-
-                    mItemView.setAdapter(mArrayAdapter2);
+                    mArrayAdapter2.notifyDataSetChanged();
 
                 }
             }
 
         });
-        mItemView.setOnItemClickListener(new AdapterView.OnLongClickListener(){
-            @Override
-            public boolean onLongClick(View v) {
-                ListHolder.getsInstance().getmListEvent().remove(); //TODO remove
-                mArrayAdapter2.notifyDataSetChanged();
-                return false;
-            } //adapter to remove items
+//        mItemView.setOnItemClickListener(new AdapterView.OnLongClickListener(){
+//            @Override
+//            public boolean onLongClick(View v) {
+//                ListHolder.getsInstance().getmListEvent().remove(Listlist,); //TODO remove
+//                mArrayAdapter2.notifyDataSetChanged();
+//                return false;
+//            } // to remove items
 
-        });
-        mItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() { \
+//        });
+        mItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ListHolder.getsInstance().getmListEvent().get(position); //TODO //edit item
@@ -84,8 +81,8 @@ public class RevisionListActivity extends AppCompatActivity {
         mArrayAdapter2 = new BaseAdapter() {
             @Override
             public int getCount() {
-                return ListHolder.getsInstance().getmListEvent().size();
-            }
+                return ListHolder.getsInstance().getmListEvent().get(index).getListlist2().size();
+            } //this will populate the list with objects from the holder. -> get index -> get List -> size
 
             @Override
             public Object getItem(int position) {
@@ -104,14 +101,16 @@ public class RevisionListActivity extends AppCompatActivity {
                     LayoutInflater li = LayoutInflater.from(RevisionListActivity.this);
                     v = li.inflate(android.R.layout.simple_list_item_2, null);
                 }
+                Listlist2 currentitem = ListHolder.getsInstance().getmListEvent().get(index).getListlist2().get(position);
+                //variable to hold the path to the item
                 TextView textView = (TextView) v.findViewById(android.R.id.text1);
-                textView.setText(ListHolder.getsInstance().getmListEvent().get(position));
+                textView.setText(currentitem.getItemTitle()); //setting text using the variable
                 TextView textView1 = (TextView) v.findViewById(android.R.id.text2);
-                textView1.setText(mRevisionDescrip.getText().toString());
+                textView1.setText(currentitem.getItemDescrip()); 
                 return v;
             }
-        };
-        listHolder.addListHolder(new Listlist(mTitle.getText().toString()));
 
+        };
+        mItemView.setAdapter(mArrayAdapter2); //refreshes the array
     }
 }

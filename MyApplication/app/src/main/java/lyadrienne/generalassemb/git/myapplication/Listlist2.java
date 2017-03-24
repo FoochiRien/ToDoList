@@ -14,7 +14,7 @@ public class Listlist2 {
     }
 
 
-    public String getmItemList() {
+    public String getItemTitle() {
         return mItemList;
     }
 
@@ -22,7 +22,7 @@ public class Listlist2 {
         this.mItemList = itemList;
     }
 
-    public String getmItemDescrip() {
+    public String getItemDescrip() {
         return mItemDescrip;
     }
 

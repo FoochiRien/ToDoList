@@ -11,12 +11,16 @@ public class Listlist {
 
     private String mListTitle;
 
-    List<Listlist2> listlist2;
+    private List<Listlist2> listlist2;
 
     public Listlist(String listTitle) {
 
         this.mListTitle = listTitle;
         listlist2 = new ArrayList<>();
+    }
+
+    public List<Listlist2> getListlist2() {
+        return listlist2;
     }
 
     public String getmListTitle() {

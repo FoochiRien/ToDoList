@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,10 +15,10 @@ import android.widget.TextView;
 
 public class MainActivityFirstScreen extends AppCompatActivity {
 
-    TextView mNolist;
-    Button mAdditem;
-    ListView mListView;
-    BaseAdapter mBaseAdapter;
+    private TextView mNolist;
+    private Button mAdditem;
+    private ListView mListView;
+    private BaseAdapter mBaseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +41,8 @@ public class MainActivityFirstScreen extends AppCompatActivity {
             }
         });
 
-        ListView listView = (ListView) findViewById(R.id.itemsinlist);
+        final ListView listView = (ListView) findViewById(R.id.itemsinlist);
 
-        Intent intent = new Intent();
-        final int index = intent.getIntExtra("ID", -1);
 
 //        final ListHolder listHolder = ListHolder.getsInstance(); //instance of singleton
 //        if (listHolder.getmListEvent().size() == 0){
@@ -77,13 +76,27 @@ public class MainActivityFirstScreen extends AppCompatActivity {
                     LayoutInflater li = LayoutInflater.from(MainActivityFirstScreen.this);
                     convertView = li.inflate(android.R.layout.simple_list_item_1, null);
                 }
-                    TextView textView = (TextView) convertView.findViewById(android.R.id.text1);
-                    textView.setText(ListHolder.getsInstance().getmListEvent().get(position).getmListTitle());
-                    return convertView;
-                }
+                TextView textView = (TextView) convertView.findViewById(android.R.id.text1);
+                textView.setText(ListHolder.getsInstance().getmListEvent().get(position).getmListTitle());
+                return convertView;
+            }
 
         };
 
-//        listView.setAdapter(mArrayAdapter);
+        listView.setAdapter(mBaseAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //move from one screen to the next
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivityFirstScreen.this, RevisionListActivity.class); //the intention to move from screens
+                intent.putExtra("ID", position); //telling the intent to
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() { //tells the array to update with the new information
+        super.onResume();
+        mBaseAdapter.notifyDataSetChanged();
     }
 }
