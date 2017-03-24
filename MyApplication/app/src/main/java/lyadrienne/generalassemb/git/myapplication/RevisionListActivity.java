@@ -22,6 +22,7 @@ public class RevisionListActivity extends AppCompatActivity {
     ListView mItemView;
     BaseAdapter mArrayAdapter2;
 
+
     //TODO ability to delete and edit
 
     @Override
@@ -29,9 +30,12 @@ public class RevisionListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_revision_list);
 
+        Intent intent = getIntent();
+        final int index = intent.getIntExtra("ID", -1);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("To Do List");
+        getSupportActionBar().setTitle("To Do List: "+ ListHolder.getsInstance().getmListEvent().get(index).getListTitle());
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
 
@@ -44,8 +48,8 @@ public class RevisionListActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.indivitemslist);
 
-        Intent intent = getIntent();
-        final int index = intent.getIntExtra("ID", -1); //intent for the index of the ArrayList
+
+        //final int index = intent.getIntExtra("ID", -1); //intent for the index of the ArrayList
 
         mSubmitFromRevision.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +60,8 @@ public class RevisionListActivity extends AppCompatActivity {
                     Listlist2 listlist2 = new Listlist2(mRevisionItem.getText().toString(), mRevisionDescrip.getText().toString()); //sends information to the singleton.
                     ListHolder.getsInstance().getmListEvent().get(index).addmListlist2(listlist2); //singleton instance of add to list go to this index add to listlist
                     mArrayAdapter2.notifyDataSetChanged();
-
+                    mRevisionItem.getText().clear();
+                    mRevisionDescrip.getText().clear();
                 }
             }
 
@@ -67,15 +72,20 @@ public class RevisionListActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 ListHolder.getsInstance().getmListEvent().get(index).getListlist2().remove(position);
                 mArrayAdapter2.notifyDataSetChanged();
+                Toast.makeText(RevisionListActivity.this, "Item deleted", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
         });
-        mItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //edit item
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ListHolder.getsInstance().getmListEvent().get(position); //TODO //edit item
+                Listlist2 itemsList = ListHolder.getsInstance().getmListEvent().get(index).getListlist2().get(position);
+                mRevisionItem.setText(itemsList.getItemTitle());
+                mRevisionDescrip.setText(itemsList.getItemDescrip());
                 mArrayAdapter2.notifyDataSetChanged();
+                mRevisionItem.getText().clear();
+                mRevisionDescrip.getText().clear();
             }
         });
 
